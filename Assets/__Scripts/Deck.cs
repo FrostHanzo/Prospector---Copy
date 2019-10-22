@@ -7,10 +7,12 @@ public class Deck : MonoBehaviour {
     [Header("Set in Inspector")]
     
 	//Suits
-	public Sprite suitClub;
-	public Sprite suitDiamond;
-	public Sprite suitHeart;
-	public Sprite suitSpade;
+	public Sprite suitBlue;
+	public Sprite suitGreen;
+	public Sprite suitYellow;
+	public Sprite suitOrange;
+    public Sprite suitRed;
+    public Sprite suitPurple;
 	
 	public Sprite[] faceSprites;
 	public Sprite[] rankSprites;
@@ -37,8 +39,13 @@ public class Deck : MonoBehaviour {
 	public Dictionary<string, Sprite>	dictSuits;
 
 
-	// called by Prospector when it is ready
-	public void InitDeck(string deckXMLText) {
+    void Start()
+    {
+        Color newColor = new Color(1.0f, 0.64f, 0.0f);
+    }
+
+    // called by Prospector when it is ready
+    public void InitDeck(string deckXMLText) {
 		// from page 576
 		if( GameObject.Find("_Deck") == null) {
 			GameObject anchorGO = new GameObject("_Deck");
@@ -47,10 +54,12 @@ public class Deck : MonoBehaviour {
 		
 		// init the Dictionary of suits
 		dictSuits = new Dictionary<string, Sprite>() {
-			{"C", suitClub},
-			{"D", suitDiamond},
-			{"H", suitHeart},
-			{"S", suitSpade}
+			{"B", suitBlue},
+			{"G", suitGreen},
+			{"Y", suitYellow},
+			{"O", suitOrange},
+            {"R", suitRed},
+            {"P", suitPurple}
 		};
 		
 		
@@ -85,7 +94,7 @@ public class Deck : MonoBehaviour {
 			// for each decorator in the XML, copy attributes and set up location and flip if needed
 			deco = new Decorator();
 			deco.type = xDecos[i].att ("type");
-			deco.flip = (xDecos[i].att ("flip") == "1");   // too cute by half - if it's 1, set to 1, else set to 0
+			deco.flip = (xDecos[i].att ("flip") == "1");   // too cut by half - if it's 1, set to 1, else set to 0
 			deco.scale = float.Parse (xDecos[i].att("scale"));
 			deco.loc.x = float.Parse (xDecos[i].att("x"));
 			deco.loc.y = float.Parse (xDecos[i].att("y"));
@@ -142,9 +151,9 @@ public class Deck : MonoBehaviour {
 	public void MakeCards() {
 		// stub Add the code from page 577 here
 		cardNames = new List<string>();
-		string[] letters = new string[] {"C","D","H","S"};
+		string[] letters = new string[] {"B","G","Y","O","R","P"};
 		foreach (string s in letters) {
-			for (int i =0; i<13; i++) {
+			for (int i =3; i<32; i++) {
 				cardNames.Add(s+(i+1));
 			}
 		}
@@ -168,12 +177,36 @@ public class Deck : MonoBehaviour {
 			card.suit = card.name[0].ToString();
 			card.rank = int.Parse (card.name.Substring (1));
 			
-			if (card.suit =="D" || card.suit == "H") {
+			if (card.suit =="R") {
 				card.colS = "Red";
 				card.color = Color.red;
 			}
-			
-			card.def = GetCardDefinitionByRank(card.rank);
+            if (card.suit =="B")
+            {
+                card.colS = "Blue";
+                card.color = Color.blue;
+            }
+            if (card.suit == "G")
+            {
+                card.colS = "Green";
+                card.color = Color.green;
+            }
+            if (card.suit == "Y")
+            {
+                card.colS = "Yellow";
+                card.color = Color.yellow;
+            }
+            if (card.suit == "O")
+            {
+                card.colS = "Orange";
+                card.color = Color.orange;
+            }
+            if (card.suit == "P")
+            {
+                card.colS = "Purple";
+                card.color = Color.magenta;
+            }
+            card.def = GetCardDefinitionByRank(card.rank);
 			
 			// Add Decorators
 			foreach (Decorator deco in decorators) {
