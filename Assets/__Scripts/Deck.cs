@@ -38,7 +38,7 @@ public class Deck : MonoBehaviour {
 	public Transform					deckAnchor;
 	public Dictionary<string, Sprite>	dictSuits;
 
-    Color orange = new Color(1.0f, 0.47f, 0.0f);
+    
    
 
     // called by Prospector when it is ready
