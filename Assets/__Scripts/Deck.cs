@@ -107,7 +107,7 @@ public class Deck : MonoBehaviour {
 		for (int i=0; i<xCardDefs.Count; i++) {
 			// for each carddef in the XML, copy attributes and set up in cDef
 			CardDefinition cDef = new CardDefinition();
-			cDef.rank = int.Parse(xCardDefs[i].att("rank"));
+			//cDef.rank = int.Parse(xCardDefs[i].att("rank"));
 			
 			PT_XMLHashList xPips = xCardDefs[i]["pip"];
 			if (xPips != null) {			
@@ -137,9 +137,9 @@ public class Deck : MonoBehaviour {
 	
 	public CardDefinition GetCardDefinitionByRank(int rnk) {
 		foreach(CardDefinition cd in cardDefs) {
-			if (cd.rank == rnk) {
-					return(cd);
-			}
+			//if (cd.rank == rnk) {
+			//		return(cd);
+			//}
 		} // foreach
 		return (null);
 	}//GetCardDefinitionByRank
@@ -150,7 +150,7 @@ public class Deck : MonoBehaviour {
 		cardNames = new List<string>();
 		string[] letters = new string[] {"B","G","Y","O","R","P"};
 		foreach (string s in letters) {
-			for (int i =3; i<32; i++) {
+			for (int i =3; i<35; i++) {
 				cardNames.Add(s+(i+1));
 			}
 		}
@@ -203,7 +203,7 @@ public class Deck : MonoBehaviour {
                 card.colS = "Purple";
                 card.color = Color.magenta;
             }
-            card.def = GetCardDefinitionByRank(card.rank);
+            //card.def = GetCardDefinitionByRank(card.rank);
 			
 			// Add Decorators
 			foreach (Decorator deco in decorators) {
@@ -212,7 +212,7 @@ public class Deck : MonoBehaviour {
 				if (deco.type == "suit") {
 					tSR.sprite = dictSuits[card.suit];
 				} else { // it is a rank
-					tS = rankSprites[card.rank];
+					//tS = rankSprites[card.rank];
 					tSR.sprite = tS;
 					tSR.color = card.color;
 				}
