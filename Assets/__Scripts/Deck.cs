@@ -38,11 +38,8 @@ public class Deck : MonoBehaviour {
 	public Transform					deckAnchor;
 	public Dictionary<string, Sprite>	dictSuits;
 
-
-    void Start()
-    {
-        Color orange = new Color(1.0f, 0.47f, 0.0f);
-    }
+    Color orange = new Color(1.0f, 0.47f, 0.0f);
+   
 
     // called by Prospector when it is ready
     public void InitDeck(string deckXMLText) {
@@ -199,7 +196,7 @@ public class Deck : MonoBehaviour {
             if (card.suit == "O")
             {
                 card.colS = "Orange";
-                card.color = Color.orange;
+                card.color = orange;
             }
             if (card.suit == "P")
             {
@@ -275,16 +272,7 @@ public class Deck : MonoBehaviour {
 		} // for all the Cardnames	
 	} // makeCards
 	
-	//Find the proper face card
-	public Sprite GetFace(string faceS) {
-		foreach (Sprite tS in faceSprites) {
-			if (tS.name == faceS) {
-				return (tS);
-			}
-		}//foreach	
-		return (null);  // couldn't find the sprite (should never reach this line)
-	 }// getFace 
-
+	
 	 static public void Shuffle(ref List<Card> oCards)
 	 {
 	 	List<Card> tCards = new List<Card>();
