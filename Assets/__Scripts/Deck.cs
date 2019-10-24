@@ -41,7 +41,7 @@ public class Deck : MonoBehaviour {
 
     void Start()
     {
-        Color newColor = new Color(1.0f, 0.64f, 0.0f);
+        Color orange = new Color(1.0f, 0.47f, 0.0f);
     }
 
     // called by Prospector when it is ready
@@ -259,18 +259,7 @@ public class Deck : MonoBehaviour {
 				card.pipGOs.Add (tGO);
 			}
 			
-			//Handle face cards
-			if (card.def.face != "") {
-				tGO = Instantiate(prefabSprite) as GameObject;
-				tSR = tGO.GetComponent<SpriteRenderer>();
-				
-				tS = GetFace(card.def.face+card.suit);
-				tSR.sprite = tS;
-				tSR.sortingOrder = 1;
-				tGO.transform.parent=card.transform;
-				tGO.transform.localPosition = Vector3.zero;  // slap it smack dab in the middle
-				tGO.name = "face";
-			}
+			
 
 			tGO = Instantiate(prefabSprite) as GameObject;
 			tSR = tGO.GetComponent<SpriteRenderer>();
