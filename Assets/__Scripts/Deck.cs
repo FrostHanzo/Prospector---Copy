@@ -136,28 +136,31 @@ public class Deck : MonoBehaviour {
 		} // for i < xCardDefs.Count
 	} // ReadDeck
 	
-	public CardDefinition GetCardDefinitionByRank(int rnk) {
-		foreach(CardDefinition cd in cardDefs) {
-			//if (cd.rank == rnk) {
-			//		return(cd);
-			//}
-		} // foreach
-		return (null);
-	}//GetCardDefinitionByRank
+	//public CardDefinition GetCardDefinitionByRank(int rnk) {
+	//	foreach(CardDefinition cd in cardDefs) {
+	//		//if (cd.rank == rnk) {
+	//		//		return(cd);
+	//		//}
+	//	} // foreach
+	//	return (null);
+	//}//GetCardDefinitionByRank
 	
 	
 	public void MakeCards() {
 		// stub Add the code from page 577 here
 		cardNames = new List<string>();
 		string[] letters = new string[] {"B","G","Y","O","R","P"};
-		foreach (string s in letters) {
-			for (int i =3; i<35; i++) {
-				cardNames.Add(s+(i+1));
-			}
-		}
-		
-		// list of all Cards
-		cards = new List<Card>();
+        //foreach (string s in letters) {
+        //	for (int i =3; i<35; i++) {
+        //		cardNames.Add(s+(i+1));
+        //	}
+        //}
+        for (int i = 3; i < 36; i++)
+        {
+            cardNames.Add("" + i);
+        }
+            // list of all Cards
+            cards = new List<Card>();
 		
 		// temp variables
 		Sprite tS = null;
@@ -213,7 +216,8 @@ public class Deck : MonoBehaviour {
 				if (deco.type == "suit") {
 					tSR.sprite = dictSuits[card.suit];
 				} else { // it is a rank
-					//tS = rankSprites[card.rank];
+                     tS = rankSprites[card.rank];
+                    //tS = letterSprites[card.letter];
 					tSR.sprite = tS;
 					tSR.color = card.color;
 				}
