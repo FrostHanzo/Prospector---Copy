@@ -61,7 +61,8 @@ public class Layout : MonoBehaviour
             switch (tSD.type)
             {
                 case "slot":
-                    tSD.faceUp = (slotsX[i].att("faceup") == "1");
+                    // tSD.faceUp = (slotsX[i].att("faceup") == "1");
+                    tSD.faceUp = (true);
                     tSD.id = int.Parse(slotsX[i].att("id"));
                     if (slotsX[i].HasAtt("hiddenby"))
                     {

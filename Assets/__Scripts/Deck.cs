@@ -38,8 +38,9 @@ public class Deck : MonoBehaviour {
 	public Transform					deckAnchor;
 	public Dictionary<string, Sprite>	dictSuits;
 
-    
-   
+
+    Color orange = new Color(1.0f, 0.47f, 0.0f);
+
 
     // called by Prospector when it is ready
     public void InitDeck(string deckXMLText) {
@@ -266,7 +267,7 @@ public class Deck : MonoBehaviour {
 			tSR.sortingOrder = 2;
 			tGO.name = "back";
 			card.back = tGO;
-			card.faceUp = false;
+			card.faceUp = true;
 			
 			cards.Add (card);
 		} // for all the Cardnames	
